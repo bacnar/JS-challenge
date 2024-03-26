@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('../../controllers/player.controller');
+const controller = require('../../controllers/gamesController');
 
 router.get('/', controller.searchByQuery);
 

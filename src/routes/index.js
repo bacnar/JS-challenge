@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
-const games = require('./game/index');
-const player = require('./player/index');
+const games = require('./games/index');
+const players = require('./players/index');
 
-router.use('/game', games);
-router.use('/player', player);
+router.use('/games', games);
+router.use('/players', players);
 
 module.exports = router;
