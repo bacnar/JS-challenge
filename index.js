@@ -7,7 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 const app = express();
 
 app.use(morgan('tiny'));
-app.use('/api', routes);
+app.use('/api', express.json(), routes);
 
 const options = {
   failOnErrors: true,

@@ -9,15 +9,15 @@ datasource db {
 
 model Player {
   id            String        @id @default(uuid())
-  first_name    String
-  last_name     String
-  born_date     DateTime
+  firstName     String
+  lastName      String
+  bornDate      DateTime
   gamePlayers   GamePlayer[]
 }
 
 model Game {
   id              String      @id @default(uuid())
-  game_title      String
+  gameTitle       String
   description     String
   pictures        Picture[]
   gamePlayers     GamePlayer[]
@@ -25,14 +25,14 @@ model Game {
 
 model Picture {
   id            String        @id @default(uuid())
-  picture_url   String
+  pictureUrl    String
   gameId        String
   game          Game          @relation(fields: [gameId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model GamePlayer {
   id            String        @id @default(uuid())
-  on_game_ended DateTime
+  onGameEnded   DateTime
   gameId        String
   game          Game          @relation(fields: [gameId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   playerId      String
