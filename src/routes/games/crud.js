@@ -2,10 +2,11 @@ const router = require('express').Router();
 const controller = require('../../controllers/gamesController');
 const { body } = require('express-validator');
 const validatorHandler = require('../../middleware/validatorHandler');
+const apicache = require('apicache');
 
-router.get('/', validatorHandler, controller.getAll);
+router.get('/', validatorHandler, apicache.middleware('1 minute'), controller.getAll);
 
-router.get('/:id', validatorHandler, controller.getById);
+router.get('/:id', validatorHandler, apicache.middleware('1 minute'), controller.getById);
 
 router.post('/',
   body('gameTitle').notEmpty(),
