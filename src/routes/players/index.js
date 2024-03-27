@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const router = require('express').Router({ mergeParams: true });
+const gameplay = require('./gameplays/index');
 const search = require('./search');
 const crud = require('./crud');
 
@@ -34,6 +35,7 @@ const crud = require('./crud');
  */
 
 router.use('/search', search);
+router.use('/:playerId/gameplays', gameplay);
 router.use('', crud);
 
 module.exports = router;

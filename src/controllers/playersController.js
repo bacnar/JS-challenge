@@ -20,6 +20,23 @@ exports.getAll = asyncHandler(async (req, res, next) => {
   res.json(players);
 });
 
+exports.getAllIncludeGameplay = asyncHandler(async (req, res, next) => {
+  const { pageSize, pageNumber } = req.query;
+  let pagination = {};
+
+  if (pageSize !== undefined && pageNumber !== undefined) {
+    const skip = pageSize * (pageNumber - 1);
+    pagination = {
+      skip,
+      take: parseInt(pageSize)
+    };
+  }
+
+  const players = await prisma.player.findMany({ ...pagination, ...{ include: { gameplay: true } } });
+
+  res.json(players);
+});
+
 exports.getById = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
 

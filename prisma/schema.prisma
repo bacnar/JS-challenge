@@ -12,7 +12,7 @@ model Player {
   firstName     String
   lastName      String
   bornDate      DateTime
-  gameplay      Gameplay[]
+  gameplays     Gameplay[]
 }
 
 model Game {
@@ -20,7 +20,7 @@ model Game {
   title           String
   description     String
   pictures        Picture[]
-  gameplay        Gameplay[]
+  gameplays       Gameplay[]
 }
 
 model Picture {
