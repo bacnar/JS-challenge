@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const controller = require('../../controllers/gamesController');
+const validatorHandler = require('../../middleware/validatorHandler');
 
-router.get('/', controller.searchByQuery);
+router.get('/', validatorHandler, controller.searchByQuery);
 
 module.exports = router;
