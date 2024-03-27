@@ -32,7 +32,7 @@ model Picture {
 
 model Gameplay {
   id            String        @id @default(uuid())
-  onGameEnded   DateTime
+  onGameEnded   DateTime      @default(now())
   gameId        String
   game          Game          @relation(fields: [gameId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   playerId      String
