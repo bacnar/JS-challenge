@@ -39,11 +39,11 @@ exports.getById = asyncHandler(async (req, res, next) => {
 });
 
 exports.create = asyncHandler(async (req, res, next) => {
-  const { gameTitle, description } = req.body;
+  const { title, description } = req.body;
 
   const content = await prisma.game.create({
     data: {
-      gameTitle,
+      title,
       description
     }
   });
@@ -53,12 +53,12 @@ exports.create = asyncHandler(async (req, res, next) => {
 
 exports.update = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
-  const { gameTitle, description } = req.body;
+  const { title, description } = req.body;
 
   await prisma.game.update({
     where: { id },
     data: {
-      gameTitle,
+      title,
       description
     }
   });
