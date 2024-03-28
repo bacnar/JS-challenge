@@ -25,7 +25,7 @@ const options = {
 const specs = swaggerJsdoc(options);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs));
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Starting server at: http://localhost:${port}`);
   console.log(`Docs at: http://localhost:${port}/docs`);

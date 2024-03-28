@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 counter.txt
+./prisma/dev.db
