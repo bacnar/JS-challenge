@@ -12,17 +12,21 @@ const apicache = require('apicache');
  *         - $ref: '#/components/schemas/Player'
  *         - type: object
  *           properties:
- *             games:
+ *             gameplays:
  *               description: Games played
  *               type: array
  *               items:
  *                 allOf:
- *                   - $ref: '#/components/schemas/Game'
  *                   - type: object
  *                     properties:
  *                       onGameEnded:
  *                         type: string
  *                         description: When game was ended
+ *                   - type: object
+ *                     properties:
+ *                       game:
+ *                         type: object
+ *                         $ref: '#/components/schemas/Game'
  *
  * /api/players/{playerId}/games:
  *   get:
