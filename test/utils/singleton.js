@@ -3,7 +3,7 @@ const { mockDeep, mockReset } = require('jest-mock-extended');
 const prisma = require('../../src/utils/client');
 const prismaMock = prisma;
 
-jest.mock('./client', () => mockDeep());
+jest.mock('../../src/utils/client', () => mockDeep());
 
 beforeEach(() => {
   mockReset(prismaMock);

@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const { Prisma } = require('@prisma/client');
 
-const prisma = require('./client');
+const prisma = require('../utils/client');
 
 exports.getAll = asyncHandler(async (req, res, next) => {
   const { pageSize, pageNumber } = req.query;

@@ -1,7 +1,7 @@
 const { Prisma } = require('@prisma/client');
 const asyncHandler = require('express-async-handler');
 
-const prisma = require('./client');
+const prisma = require('../utils/client');
 
 exports.getAll = asyncHandler(async (req, res, next) => {
   const { pageSize, pageNumber } = req.query;
@@ -32,7 +32,6 @@ exports.getAllIncludeGameplay = asyncHandler(async (req, res, next) => {
     };
   }
 
-  // Fix that
   const players = await prisma.player.findMany({ ...pagination, ...{ include: { gameplays: { select: { onGameEnded: true, game: true } } } } });
 
   res.json(players);

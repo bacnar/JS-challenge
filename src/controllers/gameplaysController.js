@@ -1,7 +1,7 @@
 const { Prisma } = require('@prisma/client');
 const asyncHandler = require('express-async-handler');
 
-const prisma = require('./client');
+const prisma = require('../utils/client');
 
 exports.getAll = asyncHandler(async (req, res, next) => {
   const gameplays = await prisma.gameplay.findMany();

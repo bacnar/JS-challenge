@@ -3,27 +3,24 @@ const fs = require('fs/promises');
 
 module.exports = asyncHandler(async (req, res, next) => {
   const filePath = './counter.txt';
+
   try {
-    try {
-      await fs.access(filePath);
+    await fs.access(filePath);
 
-      const rawData = await fs.readFile(filePath);
-      const data = JSON.parse(rawData);
+    const rawData = await fs.readFile(filePath);
+    const data = JSON.parse(rawData);
 
-      data.counter++;
-      await fs.writeFile(filePath, JSON.stringify(data));
-    } catch (exception) {
-      if (exception.code === 'ENOENT' && exception.syscall === 'access') {
-        const data = {
-          counter: 1
-        };
-        await fs.writeFile(filePath, JSON.stringify(data));
-      } else {
-        throw exception;
-      }
-    }
+    data.counter++;
+    await fs.writeFile(filePath, JSON.stringify(data));
   } catch (exception) {
-    console.error('Error while writing counter:', exception);
+    if (exception.code === 'ENOENT' && exception.syscall === 'access') {
+      const data = {
+        counter: 1
+      };
+      await fs.writeFile(filePath, JSON.stringify(data));
+    } else {
+      throw exception;
+    }
   }
 
   next();
