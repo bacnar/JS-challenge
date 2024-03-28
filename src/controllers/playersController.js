@@ -32,6 +32,7 @@ exports.getAllIncludeGameplay = asyncHandler(async (req, res, next) => {
     };
   }
 
+  // Fix that
   const players = await prisma.player.findMany({ ...pagination, ...{ include: { gameplays: { select: { onGameEnded: true, game: true } } } } });
 
   res.json(players);
