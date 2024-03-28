@@ -106,14 +106,14 @@ router.get('/', validatorHandler, apicache.middleware('1 minute'), controller.ge
 router.get('/:id', validatorHandler, apicache.middleware('1 minute'), controller.getById);
 
 router.post('/',
-  body('gameId').notEmpty(),
-  body('playerId').notEmpty(),
+  body('gameId').notEmpty().isString(),
+  body('playerId').notEmpty().isString(),
   validatorHandler,
   controller.create);
 
 router.put('/:id',
-  body('gameId').notEmpty(),
-  body('playerId').notEmpty(),
+  body('gameId').notEmpty().isString(),
+  body('playerId').notEmpty().isString(),
   validatorHandler,
   controller.update);
 

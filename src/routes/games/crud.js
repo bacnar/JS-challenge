@@ -119,14 +119,14 @@ router.get('/', validatorHandler, apicache.middleware('1 minute'), controller.ge
 router.get('/:id', validatorHandler, apicache.middleware('1 minute'), controller.getById);
 
 router.post('/',
-  body('title').notEmpty(),
-  body('description').notEmpty(),
+  body('title').notEmpty().isString(),
+  body('description').notEmpty().isString(),
   validatorHandler,
   controller.create);
 
 router.put('/:id',
-  body('title').notEmpty(),
-  body('description').notEmpty(),
+  body('title').notEmpty().isString(),
+  body('description').notEmpty().isString(),
   validatorHandler,
   controller.update);
 
