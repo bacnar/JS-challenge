@@ -10,6 +10,8 @@ RUN npm install
 
 COPY . .
 
+ENV DATABASE_URL="file:./dev.db"
+
 RUN npx prisma migrate reset --force
 
 EXPOSE 8080
