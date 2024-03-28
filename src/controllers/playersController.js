@@ -32,7 +32,7 @@ exports.getAllIncludeGameplay = asyncHandler(async (req, res, next) => {
     };
   }
 
-  const players = await prisma.player.findMany({ ...pagination, ...{ include: { gameplay: true } } });
+  const players = await prisma.player.findMany({ ...pagination, ...{ include: { gameplays: { select: { onGameEnded: true, game: true } } } } });
 
   res.json(players);
 });
@@ -73,16 +73,24 @@ exports.update = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const { firstName, lastName, bornDate } = req.body;
 
-  await prisma.player.update({
-    where: { id },
-    data: {
-      firstName,
-      lastName,
-      bornDate
-    }
-  });
+  try {
+    await prisma.player.update({
+      where: { id },
+      data: {
+        firstName,
+        lastName,
+        bornDate
+      }
+    });
 
-  res.status(204).send();
+    res.status(204).send();
+  } catch (exception) {
+    if (exception instanceof Prisma.PrismaClientKnownRequestError && exception.code === 'P2025') {
+      res.status(404).send("Item with id doesn't exists");
+    } else {
+      throw exception;
+    }
+  }
 });
 
 exports.delete = asyncHandler(async (req, res, next) => {
@@ -97,7 +105,7 @@ exports.delete = asyncHandler(async (req, res, next) => {
 
     res.status(204).send();
   } catch (exception) {
-    if (exception instanceof Prisma.RecordNotFound) {
+    if (exception instanceof Prisma.PrismaClientKnownRequestError && exception.code === 'P2025') {
       res.status(404).send("Item with id doesn't exists");
     } else {
       throw exception;

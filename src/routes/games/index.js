@@ -21,10 +21,6 @@ const crud = require('./crud');
  *         description:
  *           type: string
  *           description: Description of game
- *       example:
- *         id: dasds_ngzhj
- *         title: BlackJack
- *         description: Card game
  */
 
 router.use('/search', search);

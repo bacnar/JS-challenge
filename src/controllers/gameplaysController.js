@@ -44,15 +44,23 @@ exports.update = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const { gameId, playerId } = req.body;
 
-  await prisma.gameplay.update({
-    where: { id },
-    data: {
-      gameId,
-      playerId
-    }
-  });
+  try {
+    await prisma.gameplay.update({
+      where: { id },
+      data: {
+        gameId,
+        playerId
+      }
+    });
 
-  res.status(204).send();
+    res.status(204).send();
+  } catch (exception) {
+    if (exception instanceof Prisma.PrismaClientKnownRequestError && exception.code === 'P2025') {
+      res.status(404).send("Item with id doesn't exists");
+    } else {
+      throw exception;
+    }
+  }
 });
 
 exports.delete = asyncHandler(async (req, res, next) => {
@@ -67,7 +75,7 @@ exports.delete = asyncHandler(async (req, res, next) => {
 
     res.status(204).send();
   } catch (exception) {
-    if (exception instanceof Prisma.RecordNotFound) {
+    if (exception instanceof Prisma.PrismaClientKnownRequestError && exception.code === 'P2025') {
       res.status(404).send("Item with id doesn't exists");
     } else {
       throw exception;

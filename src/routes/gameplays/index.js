@@ -25,11 +25,6 @@ const crud = require('./crud');
  *           type: string
  *           format: date
  *           description: The auto-generated date of the gameplay
- *       example:
- *         id: dasds_ngzhj
- *         gameId: vbke34ds
- *         playerId: 3443vcsxv342
- *         onGameEnded: 2024-03-06
  */
 
 router.use('', crud);

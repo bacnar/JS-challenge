@@ -1,5 +1,5 @@
 const router = require('express').Router({ mergeParams: true });
-const gameplay = require('./gameplays/index');
+const gameplay = require('./games/index');
 const search = require('./search');
 const crud = require('./crud');
 
@@ -27,15 +27,10 @@ const crud = require('./crud');
  *           type: string
  *           format: date
  *           description: Born date of player
- *       example:
- *         id: dasds_ngzhj
- *         firstName: John
- *         lastName: Doe
- *         bornDate: 1995-04-03
  */
 
 router.use('/search', search);
-router.use('/:playerId/gameplays', gameplay);
+router.use('/:playerId/games', gameplay);
 router.use('', crud);
 
 module.exports = router;

@@ -11,7 +11,7 @@ model Player {
   id            String        @id @default(uuid())
   firstName     String
   lastName      String
-  bornDate      DateTime
+  bornDate      String
   gameplays     Gameplay[]
 }
 

@@ -53,8 +53,8 @@ const apicache = require('apicache');
  *         description: The gameplay id
  *     responses:
  *       200:
- *         description: The gameplay response by id
- *         contens:
+ *         description: The gameplay response by id.
+ *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Gameplay'
